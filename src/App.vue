@@ -17,46 +17,58 @@ onUnmounted(() => {
 })
 
 const sections = [1, 2, 3, 4, 9, 5, 6, 7, 8]
-const restSection = 9 // 第5節休息
+const restSection = 9
 
 const today = computed(() => now.value.getDay())
 
 const selectedCourse = ref(null)
 
 const colors = {
-  common: '#d9f2ff', Pro: "#ffe4c4", other: "#e6f5d0", practice: "#ffd6e7"
+  common: '#d9f2ff', Pro: "#ffe4c4", other: "#e6f5d0", practice: "#ffd6e7",
+  red: '#ff3b30', yellow: '#ffcc00', green: '#34c759'
 }
 
-// 課程
 const courses = [
-  { day: 1, start: 1, span: 2, name: '國文', color: colors.common },
-  { day: 1, start: 3, span: 1, name: '體育', color: colors.other },
-  { day: 1, start: 4, span: 1, name: '數學', color: colors.common },
-  { day: 1, start: 5, span: 1, name: '數學', color: colors.common },
-  { day: 1, start: 6, span: 2, name: '彈性選修', color: colors.other },
-  { day: 1, start: 8, span: 1, name: '電子學', color: colors.Pro },
+  { day: 1, start: 1, span: 2, name: '國文', color: colors.common, teacher: "陳美華" },
+  { day: 1, start: 3, span: 1, name: '體育', color: colors.other, teacher: "藍美芬" },
+  { day: 1, start: 4, span: 1, name: '數學', color: colors.common, teacher: "沈正宗" },
+  { day: 1, start: 5, span: 1, name: '數學', color: colors.common, teacher: "沈正宗" },
+  { day: 1, start: 6, span: 2, name: '彈性選修', color: colors.other, teacher: "陳相宇" },
+  { day: 1, start: 8, span: 1, name: '電子學', color: colors.Pro, teacher: "張義忠" },
 
-  { day: 2, start: 1, span: 4, name: '程式專題實習', color: colors.practice },
-  { day: 2, start: 5, span: 1, name: '電子學', color: colors.Pro },
-  { day: 2, start: 6, span: 1, name: '微處理機', color: colors.Pro },
-  { day: 2, start: 7, span: 1, name: '公民與社會', color: colors.other },
+  { day: 2, start: 1, span: 4, name: '程式專題實習', color: colors.practice, teacher: "張義忠 陳威志" },
+  { day: 2, start: 5, span: 1, name: '電子學', color: colors.Pro, teacher: "張義忠" },
+  { day: 2, start: 6, span: 1, name: '微處理機', color: colors.Pro, teacher: "歐曉秋" },
+  { day: 2, start: 7, span: 1, name: '公民與社會', color: colors.other, teacher: "王鴻輝" },
 
-  { day: 3, start: 1, span: 3, name: '電子學實習', color: colors.practice },
-  { day: 3, start: 4, span: 1, name: '單晶片微處理機實習', color: colors.practice },
-  { day: 3, start: 5, span: 2, name: '單晶片微處理機實習', color: colors.practice },
-  { day: 3, start: 7, span: 1, name: '國文', color: colors.common },
+  { day: 3, start: 1, span: 3, name: '電子學實習', color: colors.practice, teacher: "歐曉秋 陳李瑋" },
+  { day: 3, start: 4, span: 1, name: '單晶片微處理機實習', color: colors.practice, teacher: "歐曉秋 陳李瑋" },
+  { day: 3, start: 5, span: 2, name: '單晶片微處理機實習', color: colors.practice, teacher: "歐曉秋 陳李瑋" },
+  { day: 3, start: 7, span: 1, name: '國文', color: colors.common, teacher: "陳美華" },
 
-  { day: 4, start: 1, span: 2, name: '數學', color: colors.common },
-  { day: 4, start: 3, span: 2, name: '英文', color: colors.common },
-  { day: 4, start: 5, span: 1, name: '公民與社會', color: colors.other },
-  { day: 4, start: 6, span: 1, name: '體育', color: colors.other },
-  { day: 4, start: 7, span: 2, name: '微處理機', color: '#cde7ff' },
+  { day: 4, start: 1, span: 2, name: '數學', color: colors.common, teacher: "沈正宗" },
+  { day: 4, start: 3, span: 2, name: '英文', color: colors.common, teacher: "莊凱婷" },
+  { day: 4, start: 5, span: 1, name: '公民與社會', color: colors.other, teacher: "王鴻輝" },
+  { day: 4, start: 6, span: 1, name: '體育', color: colors.other, teacher: "藍美芬" },
+  { day: 4, start: 7, span: 2, name: '微處理機', color: colors.Pro, teacher: "歐曉秋" },
 
-  { day: 5, start: 1, span: 1, name: '團體活動時間1', color: colors.other },
-  { day: 5, start: 2, span: 1, name: '微處理機', color: colors.Pro },
-  { day: 5, start: 3, span: 2, name: '團體活動時間23', color: colors.other },
-  { day: 5, start: 5, span: 1, name: '英文', color: colors.common },
-  { day: 5, start: 6, span: 2, name: '電子學', color: colors.Pro },
+  { day: 5, start: 1, span: 1, name: '團體活動時間1', color: colors.other, teacher: "歐曉秋" },
+  { day: 5, start: 2, span: 1, name: '微處理機', color: colors.Pro, teacher: "歐曉秋" },
+  { day: 5, start: 3, span: 2, name: '團體活動時間23', color: colors.other, teacher: "無" },
+  { day: 5, start: 5, span: 1, name: '英文', color: colors.common, teacher: "莊凱婷" },
+  { day: 5, start: 6, span: 2, name: '電子學', color: colors.Pro, teacher: "張義忠" },
+]
+const examDates = ['3/25 (三)', '3/26 (四)']
+
+const exams = [
+  // 第一天
+  { day: 0, name: '數學', time: '第二節 (09:10 - 10:00)', color: colors.red },
+  { day: 0, name: '微處理機', time: '第五節 (13:00 - 13:50)', color: colors.yellow },
+  { day: 0, name: '英文', time: '第七節 (15:05 - 15:55)', color: colors.green },
+
+  // 第二天
+  { day: 1, name: '電子學', time: '第二節 (09:10 - 09:00)', color: colors.red },
+  { day: 1, name: '國文', time: '第七節 (15:05 - 15:55)', color: colors.yellow },
 ]
 
 // 公告事項
@@ -90,6 +102,7 @@ const currentDateLabel = computed(() => {
 
   return `${month}月${date}日 星期${day} ${hours}:${minutes}:${seconds}`
 })
+
 </script>
 
 <template>
@@ -117,6 +130,25 @@ const currentDateLabel = computed(() => {
       </div>
     </section>
 
+    <section class="exam-section">
+      <h2 class="section-title">第一次段考考程</h2>
+      <div class="exam-container">
+        <div v-for="(date, dIndex) in examDates" :key="dIndex" class="exam-day-group">
+          <h3 class="exam-date-title">{{ date }}</h3>
+
+          <div class="ios-card-stack">
+            <div v-for="exam in exams.filter(e => e.day === dIndex)" :key="exam.name" class="exam-card">
+              <div class="exam-status-dot" :style="{ background: exam.color }"></div>
+              <div class="exam-info">
+                <span class="exam-name">{{ exam.name }}</span>
+                <span class="exam-time">{{ exam.time }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 課表 -->
     <section class="schedule-section">
       <h2 class="section-title">課表</h2>
@@ -139,21 +171,23 @@ const currentDateLabel = computed(() => {
       </div>
     </section>
 
-    <!-- Modal -->
+    <!-- 課表資訊 -->
     <div v-if="selectedCourse" class="modal" @click="selectedCourse = null">
       <div class="modal-content" @click.stop>
         <h3>{{ selectedCourse.name }}</h3>
         <p>星期：{{ days[selectedCourse.day - 1] }}</p>
         <p>節次：{{ selectedCourse.start }} ~ {{ selectedCourse.start + selectedCourse.span - 1 }}</p>
+        <p>導師：{{ selectedCourse.teacher }}</p>
         <button @click="selectedCourse = null">關閉</button>
       </div>
     </div>
+
   </div>
 </template>
 
 <style scoped>
-/* 基礎重置 */
-:global(html), :global(body) {
+:global(html),
+:global(body) {
   background-color: #000 !important;
   margin: 0;
   padding: 0;
@@ -354,5 +388,55 @@ const currentDateLabel = computed(() => {
   border-radius: 8px;
   color: #fff;
   font-weight: 600;
+}
+
+.exam-day-group {
+  margin-bottom: 20px;
+}
+
+.exam-date-title {
+  font-size: 16px;
+  color: #ff3b30;
+  /* 考試用紅色標記 */
+  margin: 10px 0 8px 5px;
+  font-weight: 600;
+}
+
+.exam-card {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 0.5px solid #38383a;
+}
+
+.exam-status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 15px;
+  margin-left: 5px;
+}
+
+.exam-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.exam-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.exam-time {
+  font-size: 13px;
+  color: #8e8e93;
+}
+
+.exam-location {
+  font-size: 14px;
+  color: #8e8e93;
+  padding-right: 5px;
 }
 </style>
