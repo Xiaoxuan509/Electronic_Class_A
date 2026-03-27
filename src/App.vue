@@ -111,7 +111,7 @@ const currentDateLabel = computed(() => {
     <header class="ios-header">
       <div class="header-left">
         <span class="date-label">{{ currentDateLabel }}</span>
-        <h1>子二甲</h1>
+        <h1>軒的NOTE</h1>
       </div>
       <!--<div class="user-avatar">學</div>-->
     </header>
