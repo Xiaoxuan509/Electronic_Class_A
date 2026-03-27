@@ -130,7 +130,7 @@ const currentDateLabel = computed(() => {
       </div>
     </section>
 
-    <section class="exam-section">
+    <!-- <section class="exam-section">
       <h2 class="section-title">第一次段考考程</h2>
       <div class="exam-container">
         <div v-for="(date, dIndex) in examDates" :key="dIndex" class="exam-day-group">
@@ -147,7 +147,7 @@ const currentDateLabel = computed(() => {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- 課表 -->
     <section class="schedule-section">
