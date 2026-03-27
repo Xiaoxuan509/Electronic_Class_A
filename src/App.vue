@@ -148,10 +148,12 @@ const currentDateLabel = computed(() => {
         </div>
       </div>
     </section> -->
+    <a href="https://drive.google.com/drive/folders/1IHD17Ih5JgNu-1rx-arueP2MiV2S1y0Y" target="_blank" class="simple-btn">✨J16雲端硬碟<br></a>
+    <a href="https://docs.google.com/spreadsheets/d/1xrGKWn7sLvBxhT4Qda0G7yZpHUPX8zMcOfLBIE4zSeg/edit?gid=1565764479#gid=1565764479" target="_blank" class="simple-btn">🎖️第56屆全國技能競賽青少年組J16課表</a>
 
     <!-- 課表 -->
     <section class="schedule-section">
-      <h2 class="section-title">課表</h2>
+      <h2 class="section-title"><br>課表</h2>
       <div class="schedule-grid">
         <div class="corner-space"></div>
         <div v-for="(day, i) in days" :key="day" class="day-header" :class="{ isToday: i + 1 === today }">{{ day }}
@@ -338,6 +340,13 @@ const currentDateLabel = computed(() => {
 
   /* 讓跨節方塊不要死板板貼齊 */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.simple-btn {
+  color: #0a84ff; /* iOS 標準藍色 */
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 /* 針對行動裝置微調字體 */
